@@ -11,17 +11,27 @@ public class Game {
     private String date;
     private Integer firstTeamScore;
     private Integer secondTeamScore;
+    private boolean active;
 
-    public Game(int id, Country firstTeam, Country secondTeam, String date, Integer firstTeamScore, Integer secondTeamScore) {
+    public Game(int id, Country firstTeam, Country secondTeam, String date, Integer firstTeamScore, Integer secondTeamScore, boolean active) {
         this.id = id;
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
         this.date = date;
         this.firstTeamScore = firstTeamScore;
         this.secondTeamScore = secondTeamScore;
+        this.active = active;
     }
 
     public Game(){}
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;

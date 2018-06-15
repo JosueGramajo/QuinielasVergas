@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "876743877675",
+    "firebase_url": "https://quiniela-9fd4a.firebaseio.com",
+    "project_id": "quiniela-9fd4a",
+    "storage_bucket": "quiniela-9fd4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876743877675:android:3cc5f18fd2142e54",
+        "android_client_info": {
+          "package_name": "com.gramajo.josue.quinielasvergas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876743877675-70vujkbalnsib6nujpfruervv8dgavtn.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "876743877675-70vujkbalnsib6nujpfruervv8dgavtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDid1PePase8Hfk-4UXrp-qjlVevJK9__U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

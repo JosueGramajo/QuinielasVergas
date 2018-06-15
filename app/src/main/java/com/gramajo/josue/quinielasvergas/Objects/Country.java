@@ -10,9 +10,9 @@ import com.gramajo.josue.quinielasvergas.R;
 
 public class Country {
     private String name;
-    private int flag;
+    private String flag;
 
-    public Country(String name, int flag) {
+    public Country(String name, String flag) {
         this.name = name;
         this.flag = flag;
     }
@@ -27,11 +27,11 @@ public class Country {
         this.name = name;
     }
 
-    public int getFlag() {
+    public String getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(String flag) {
         this.flag = flag;
     }
 }

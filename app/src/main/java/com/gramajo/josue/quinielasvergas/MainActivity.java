@@ -1,5 +1,6 @@
 package com.gramajo.josue.quinielasvergas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.gramajo.josue.quinielasvergas.Helpers.Global;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
@@ -72,9 +77,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_quiniela) {
-
+            startActivity(new Intent(this, QuinielaActivity.class));
         } else if (id == R.id.nav_ranking) {
-
+            startActivity(new Intent(this, RankingActivity.class));
+        } else if (id == R.id.nav_logout){
+            Global.globalUser = null;
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
