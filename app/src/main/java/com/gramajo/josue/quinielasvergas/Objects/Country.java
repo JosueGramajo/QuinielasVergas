@@ -1,9 +1,5 @@
 package com.gramajo.josue.quinielasvergas.Objects;
 
-import android.media.Image;
-
-import com.gramajo.josue.quinielasvergas.R;
-
 /**
  * Created by josuegramajo on 6/14/18.
  */

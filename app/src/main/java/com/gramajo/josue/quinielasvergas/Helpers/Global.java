@@ -3,7 +3,6 @@ package com.gramajo.josue.quinielasvergas.Helpers;
 import com.gramajo.josue.quinielasvergas.Objects.Country;
 import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
-import com.gramajo.josue.quinielasvergas.R;
 
 import java.util.ArrayList;
 
@@ -49,10 +48,10 @@ public class Global {
     public static Country uruguay = new Country("Uruguay", "uruguay");
 
     //Games
-    public static Game game1 = new Game(1, rusia, arabia, "14/06/2018", 5, 0, false);
-    public static Game game2 = new Game(2, egipto, uruguay, "15/06/2018", 0, 1, false);
-    public static Game game3 = new Game(3, marruecos, iran, "15/06/2018", 0, 1, false);
-    public static Game game4 = new Game(4, portugal, spain, "15/06/2018", 3, 3, false);
+    public static Game game1 = new Game(1, rusia, arabia, "14/06/2018", null, null, false);
+    public static Game game2 = new Game(2, egipto, uruguay, "15/06/2018", null, null, false);
+    public static Game game3 = new Game(3, marruecos, iran, "15/06/2018", null, null, false);
+    public static Game game4 = new Game(4, portugal, spain, "15/06/2018", null, null, false);
     public static Game game5 = new Game(5, francia, australia, "16/06/2018", null, null, true);
     public static Game game6 = new Game(6, argentina, islandia, "16/06/2018", null, null, true);
     public static Game game7 = new Game(7, peru, dinamarca, "16/06/2018", null, null, true);

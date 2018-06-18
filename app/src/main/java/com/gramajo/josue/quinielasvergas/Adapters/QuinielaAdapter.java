@@ -1,8 +1,6 @@
 package com.gramajo.josue.quinielasvergas.Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,9 +12,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gramajo.josue.quinielasvergas.Helpers.DateUtils;
 import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.R;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,12 +69,31 @@ public class QuinielaAdapter extends RecyclerView.Adapter<QuinielaAdapter.MyView
         holder.score1.setGravity(Gravity.CENTER);
         holder.score2.setGravity(Gravity.CENTER);
 
-        if(game.getFirstTeamScore() != null && game.getSecondTeamScore() != null){
-            holder.score1.setText(game.getFirstTeamScore().toString());
-            holder.score1.setEnabled(false);
+        Date gameDate = DateUtils.INSTANCE.stringToDate(game.getDate());
+        Date currentDate = DateUtils.INSTANCE.stringToDate(DateUtils.INSTANCE.getCurrentDate());
 
-            holder.score2.setText(game.getSecondTeamScore().toString());
-            holder.score2.setEnabled(false);
+        if(gameDate.equals(currentDate) || gameDate.before(currentDate)){
+            if(game.getFirstTeamScore() == null || game.getSecondTeamScore() == null){
+                holder.score1.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                holder.score1.setEnabled(false);
+
+                holder.score2.setBackgroundColor(context.getResources().getColor(R.color.gray));
+                holder.score2.setEnabled(false);
+            }else{
+                holder.score1.setText(game.getFirstTeamScore().toString());
+                holder.score1.setEnabled(false);
+
+                holder.score2.setText(game.getSecondTeamScore().toString());
+                holder.score2.setEnabled(false);
+            }
+        }else{
+            if(game.getFirstTeamScore() != null || game.getSecondTeamScore() != null){
+                holder.score1.setText(game.getFirstTeamScore().toString());
+                holder.score1.setEnabled(true);
+
+                holder.score2.setText(game.getSecondTeamScore().toString());
+                holder.score2.setEnabled(true);
+            }
         }
 
         holder.score1.addTextChangedListener(new TextWatcher() {

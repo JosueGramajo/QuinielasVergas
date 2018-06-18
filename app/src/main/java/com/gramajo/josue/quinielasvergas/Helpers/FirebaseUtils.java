@@ -6,22 +6,16 @@ package com.gramajo.josue.quinielasvergas.Helpers;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
 import com.gramajo.josue.quinielasvergas.Objects.Point;
 
@@ -40,6 +34,9 @@ public class FirebaseUtils {
 
     private final String masterID = "Master";
     private final String masterPoolID = "masterPool";
+
+    private final String sampleID = "Sample";
+    private final String quinielaSampleID = "QuinielaSample";
 
     private OnEventListener mOnEventListener;
 
@@ -63,6 +60,11 @@ public class FirebaseUtils {
 
     public void setOnRankingEventListener(OnRankingEventListener mOnRankingEventListener) {
         this.mOnRankingEventListener = mOnRankingEventListener;
+    }
+
+    OnMasterPoolEventListener listener;
+    public void setOnMasterPoolListener(OnMasterPoolEventListener listener){
+        this.listener = listener;
     }
 
     public void register(final Context context, String user, String pass){
@@ -142,7 +144,7 @@ public class FirebaseUtils {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (queryDocumentSnapshots.isEmpty()) {
-                    getMasterPool();
+                    getSamplePool();
                 } else {
                     Games games = queryDocumentSnapshots.toObjects(Games.class).get(0);
                     mOnPoolEventListener.onPoolSuccess(games);
@@ -164,6 +166,18 @@ public class FirebaseUtils {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Games games = documentSnapshot.toObject(Games.class);
+                listener.onMasterPoolSuccess(games.getGames());
+            }
+        });
+    }
+
+    public void getSamplePool(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection(sampleID).document(quinielaSampleID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Games games = documentSnapshot.toObject(Games.class);
                 mOnPoolEventListener.onPoolSuccess(games);
             }
         });
@@ -171,7 +185,7 @@ public class FirebaseUtils {
 
     public void saveMasterPool(final Context context, Games games){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(masterID).document(masterPoolID).set(games).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection(sampleID).document(quinielaSampleID).set(games).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(context, "Datos guardados exitosmanete", Toast.LENGTH_SHORT).show();

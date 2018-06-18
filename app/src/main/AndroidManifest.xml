@@ -36,6 +36,12 @@
             android:theme="@style/AppTheme">
         </activity>
 
+
+        <activity android:name=".GlobalResultsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+        </activity>
+
     </application>
 
 </manifest>

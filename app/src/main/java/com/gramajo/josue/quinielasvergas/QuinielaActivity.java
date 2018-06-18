@@ -2,20 +2,14 @@ package com.gramajo.josue.quinielasvergas;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.gramajo.josue.quinielasvergas.Adapters.QuinielaAdapter;
@@ -27,7 +21,6 @@ import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 
@@ -54,10 +47,10 @@ public class QuinielaActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(QuinielaActivity.this);
-                alert.setMessage("Estas totalmente seguro va maje? solo se pude guardar 1 vez por partido");
+                alert.setMessage("Desea guardar? (Ahora se puede editar la cantidad de veces que sea el partido, hasta 1 dia antes del mismo)");
                 alert.setTitle("Confirmacion");
 
-                alert.setPositiveButton("Ahuevo, de una", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Dale", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, int whichButton) {
 
                         FirebaseUtils firebase = new FirebaseUtils();
@@ -77,7 +70,7 @@ public class QuinielaActivity extends AppCompatActivity{
                     }
                 });
 
-                alert.setNegativeButton("Nel prro", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }

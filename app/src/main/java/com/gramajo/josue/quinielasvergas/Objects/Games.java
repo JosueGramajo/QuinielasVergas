@@ -1,6 +1,5 @@
 package com.gramajo.josue.quinielasvergas.Objects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

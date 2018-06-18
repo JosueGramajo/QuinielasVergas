@@ -2,22 +2,15 @@ package com.gramajo.josue.quinielasvergas.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Point;
 import com.gramajo.josue.quinielasvergas.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by josuegramajo on 6/15/18.

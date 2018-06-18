@@ -6,12 +6,22 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_quiniela"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_action_edit"
             android:title="Quiniela" />
         <item
             android:id="@+id/nav_ranking"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/ic_action_ranking"
             android:title="Ranking" />
+
+        <item
+            android:id="@+id/nav_results"
+            android:icon="@drawable/ic_action_globe"
+            android:title="Resultados de partidos" />
+
+        <item
+            android:id="@+id/nav_selections"
+            android:icon="@drawable/ic_action_group"
+            android:title="Quinielas de usuarios" />
 
         <item
             android:id="@+id/nav_logout"
