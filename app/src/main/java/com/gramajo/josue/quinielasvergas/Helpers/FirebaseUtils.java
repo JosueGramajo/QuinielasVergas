@@ -215,7 +215,7 @@ public class FirebaseUtils {
                 ArrayList<Point> points = new ArrayList<>();
 
                 for(Games g : games){
-                    int p = QuinielaUtils.INSTANCE.getPoints(masterGames, g);
+                    int p = QuinielaUtils.INSTANCE.getPoints(masterGames.getGames(), g.getGames());
 
                     points.add(new Point(p, g.getUser()));
                 }

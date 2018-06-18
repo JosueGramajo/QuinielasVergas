@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gramajo.josue.quinielasvergas.Objects.Point;
@@ -23,11 +24,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView points, user;
+        public ImageView place;
 
         public MyViewHolder(View view) {
             super(view);
             points = view.findViewById(R.id.tv_points);
             user = view.findViewById(R.id.tv_user);
+            place = view.findViewById(R.id.iv_place);
         }
     }
 
@@ -50,6 +53,14 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
         holder.points.setText(String.valueOf(point.getPoints()));
         holder.user.setText(point.getUser());
+
+        if(position == 0){
+            holder.place.setImageResource(R.drawable.first);
+        }else if(position == 1){
+            holder.place.setImageResource(R.drawable.second);
+        }else{
+            holder.place.setVisibility(View.INVISIBLE);
+        }
     }
 
     public ArrayList<Point> getList(){

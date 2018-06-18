@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.gramajo.josue.quinielasvergas.Adapters.PrevReviewAdapter;
 import com.gramajo.josue.quinielasvergas.Helpers.Global;
+import com.gramajo.josue.quinielasvergas.Objects.Review;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         } else if(id == R.id.nav_results){
             startActivity(new Intent(this, GlobalResultsActivity.class));
         } else if(id == R.id.nav_selections){
-
+            startActivity(new Intent(this, PrevReviewActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
