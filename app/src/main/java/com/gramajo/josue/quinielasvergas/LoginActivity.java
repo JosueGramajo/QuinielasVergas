@@ -3,12 +3,16 @@ package com.gramajo.josue.quinielasvergas;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -40,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         passEditText = findViewById(R.id.tv_password);
         registerTextView = findViewById(R.id.tv_register);
 
+        userEditText.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+        passEditText.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFirestoreLoginSuccess() {
                             dialog.dismiss();
-                            Intent returnIntent = new Intent();
-                            setResult(Activity.RESULT_OK, returnIntent);
                             finish();
                         }
                     });
@@ -70,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
                 register();
             }
         });
+
+        Window window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
     }
 
     @Override
