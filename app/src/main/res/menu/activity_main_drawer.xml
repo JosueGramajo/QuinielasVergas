@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_action_edit"
             android:title="Quiniela" />
         <item
+            android:id="@+id/nav_quiniela_final"
+            android:icon="@drawable/ic_action_star"
+            android:title="Quiniela Final" />
+        <item
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ic_action_ranking"
             android:title="Ranking" />

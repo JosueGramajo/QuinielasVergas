@@ -1,6 +1,7 @@
 package com.gramajo.josue.quinielasvergas.Helpers;
 
 import com.gramajo.josue.quinielasvergas.Objects.Country;
+import com.gramajo.josue.quinielasvergas.Objects.FinalsGame;
 import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
 
@@ -46,6 +47,7 @@ public class Global {
     public static Country suiza = new Country("Suiza", "suiza");
     public static Country tunez = new Country("Tunez", "tunez");
     public static Country uruguay = new Country("Uruguay", "uruguay");
+    public static Country undefined = new Country("Por definir", "undefined");
 
     //Games
     public static Game game1 = new Game(1, rusia, arabia, "14/06/2018", null, null, false);
@@ -97,6 +99,31 @@ public class Global {
     public static Game game47 = new Game(47, panama, tunez, "28/06/2018", null, null, true);
     public static Game game48 = new Game(48, inglaterra, belgica, "28/06/2018", null, null, true);
 
+    //Octavos
+    public static FinalsGame final1 = new FinalsGame(49, undefined, undefined, "30/06/2018","08:00", null, null, false, "", "$Octavos");
+    public static FinalsGame final2 = new FinalsGame(50, undefined, undefined, "30/06/2018","12:00", null, null, false, "", "Octavos");
+    public static FinalsGame final3 = new FinalsGame(51, undefined, undefined, "01/07/2018","08:00", null, null, false, "", "Octavos");
+    public static FinalsGame final4 = new FinalsGame(52, undefined, undefined, "01/07/2018","12:00", null, null, false, "", "Octavos");
+    public static FinalsGame final5 = new FinalsGame(53, undefined, undefined, "02/07/2018","08:00", null, null, false, "", "Octavos");
+    public static FinalsGame final6 = new FinalsGame(54, undefined, undefined, "02/07/2018","12:00", null, null, false, "", "Octavos");
+    public static FinalsGame final7 = new FinalsGame(55, undefined, undefined, "03/07/2018","08:00", null, null, false, "", "Octavos");
+    public static FinalsGame final8 = new FinalsGame(56, undefined, undefined, "03/07/2018","12:00", null, null, false, "", "Octavos");
+
+    //Cuartos
+    public static FinalsGame final9 = new FinalsGame(57, undefined, undefined, "06/07/2018","08:00", null, null, false, "", "$Cuartos");
+    public static FinalsGame final10 = new FinalsGame(58, undefined, undefined, "06/07/2018","12:00", null, null, false, "", "Cuartos");
+    public static FinalsGame final11 = new FinalsGame(59, undefined, undefined, "07/07/2018","08:00", null, null, false, "", "Cuartos");
+    public static FinalsGame final12 = new FinalsGame(60, undefined, undefined, "07/07/2018","12:00", null, null, false, "", "Cuartos");
+
+    //Semis
+    public static FinalsGame final13 = new FinalsGame(61, undefined, undefined, "10/07/2018","12:00", null, null, false, "", "$Semifinales");
+    public static FinalsGame final14 = new FinalsGame(62, undefined, undefined, "11/07/2018","12:00", null, null, false, "", "Semifinales");
+
+    //Tercer lugar
+    public static FinalsGame final15 = new FinalsGame(63, undefined, undefined, "14/07/2018","08:00", null, null, false, "", "$Tercer Lugar");
+
+    //Final
+    public static FinalsGame final16 = new FinalsGame(64, undefined, undefined, "15/07/2018","09:00", null, null, false, "", "$Final");
 
     public static Games list = new Games();
 
@@ -153,6 +180,29 @@ public class Global {
         daList.add(game48);
 
         return  daList;
+    }
+
+    public static ArrayList<FinalsGame> initFinalsList(){
+        ArrayList<FinalsGame> list = new ArrayList<FinalsGame>();
+
+        list.add(final1);
+        list.add(final2);
+        list.add(final3);
+        list.add(final4);
+        list.add(final5);
+        list.add(final6);
+        list.add(final7);
+        list.add(final8);
+        list.add(final9);
+        list.add(final10);
+        list.add(final11);
+        list.add(final12);
+        list.add(final13);
+        list.add(final14);
+        list.add(final15);
+        list.add(final16);
+
+        return list;
     }
     
 }

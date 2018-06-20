@@ -76,7 +76,7 @@ public class PrevReviewActivity extends AppCompatActivity {
             }
         });
         dialog.show();
-        firebase.getPools(this);
+        firebase.getPools();
     }
 
     private void moveToReview(String user){

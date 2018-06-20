@@ -1,5 +1,6 @@
 package com.gramajo.josue.quinielasvergas.Helpers;
 
+import com.gramajo.josue.quinielasvergas.Objects.FinalsGame;
 import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
 
@@ -15,24 +16,17 @@ public class QuinielaUtils {
     public int getPoints(List<Game> master, List<Game> user){
         int uPoints = 0;
 
-        for(int i = 1;i<master.size() + 1;i++){
+        for(Game m : master){
 
-            Integer masterFirstScore = null;
-            Integer masterSecondScore = null;
+            Integer masterFirstScore = m.getFirstTeamScore();
+            Integer masterSecondScore = m.getSecondTeamScore();
+            boolean masterActive = m.isActive();
+
             Integer firstScore = null;
             Integer secondScore = null;
 
-            boolean masterActive = true;
-
-            for(Game g : master){
-                if(g.getId() == i){
-                    masterFirstScore = g.getFirstTeamScore();
-                    masterSecondScore = g.getSecondTeamScore();
-                    masterActive = g.isActive();
-                }
-            }
             for(Game g : user){
-                if(g.getId() == i){
+                if(g.getId() == m.getId()){
                     firstScore = g.getFirstTeamScore();
                     secondScore = g.getSecondTeamScore();
                 }
@@ -68,6 +62,68 @@ public class QuinielaUtils {
         }
         return uPoints;
     }
+
+    public int getFinalsPoints(List<FinalsGame> master, List<FinalsGame> user){
+        int uPoints = 0;
+
+        for(FinalsGame m : master){
+
+            Integer masterFirstScore = m.getFirstTeamScore();
+            Integer masterSecondScore = m.getSecondTeamScore();
+            boolean masterPenalties = m.isPenalties();
+            String masterPenaltieWinner = m.getPenaltiesWinner();
+
+            Integer firstScore = null;
+            Integer secondScore = null;
+            boolean penalties = false;
+            String penaltieWinner = "";
+
+            for(FinalsGame g : user){
+                if(g.getId() == m.getId()){
+                    firstScore = g.getFirstTeamScore();
+                    secondScore = g.getSecondTeamScore();
+                    penalties = g.isPenalties();
+                    penaltieWinner = g.getPenaltiesWinner();
+                }
+            }
+
+            if(masterFirstScore == null || masterSecondScore == null || firstScore == null || secondScore == null){
+                continue;
+            }
+
+            if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+                uPoints = uPoints + 6;
+                continue;
+            }
+
+            if(penalties && masterPenalties){
+                uPoints = uPoints + 2;
+                continue;
+            }
+
+            if(masterFirstScore == firstScore && masterSecondScore == secondScore){
+                uPoints = uPoints + 5;
+                continue;
+            }
+
+            if(masterFirstScore > masterSecondScore && firstScore > secondScore){
+                uPoints = uPoints + 1;
+                continue;
+            }
+
+            if(masterFirstScore < masterSecondScore && firstScore < secondScore){
+                uPoints = uPoints + 1;
+                continue;
+            }
+
+            if(masterFirstScore == masterSecondScore && firstScore == secondScore){
+                uPoints = uPoints + 1;
+                continue;
+            }
+        }
+        return uPoints;
+    }
+
     public int getPointsIndividualGame(Game master, Game user){
         Integer masterFirstScore = master.getFirstTeamScore();
         Integer masterSecondScore = master.getSecondTeamScore();

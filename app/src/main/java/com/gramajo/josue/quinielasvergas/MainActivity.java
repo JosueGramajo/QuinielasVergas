@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gramajo.josue.quinielasvergas.Adapters.PrevReviewAdapter;
 import com.gramajo.josue.quinielasvergas.Helpers.Global;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "ño", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -80,7 +82,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_quiniela) {
             startActivity(new Intent(this, QuinielaActivity.class));
-        } else if (id == R.id.nav_ranking) {
+        }else if (id == R.id.nav_quiniela_final) {
+            startActivity(new Intent(this, FinalsActivity.class));
+        }else if (id == R.id.nav_ranking) {
             startActivity(new Intent(this, RankingActivity.class));
         } else if (id == R.id.nav_logout){
             Global.globalUser = null;

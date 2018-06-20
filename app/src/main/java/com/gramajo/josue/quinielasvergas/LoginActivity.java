@@ -97,18 +97,28 @@ public class LoginActivity extends AppCompatActivity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(20, 9, 20, 9);
 
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         userText.setLayoutParams(lp);
         passwordText.setLayoutParams(lp);
         passwordText.setInputType(InputType.TYPE_CLASS_TEXT |
                 InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         userText.setHint("Usuario");
+        userText.setSingleLine(true);
+        userText.setTextColor(getResources().getColor(R.color.white));
+
         passwordText.setHint("Contraseña");
+        passwordText.setSingleLine(true);
+        passwordText.setTextColor(getResources().getColor(R.color.white));
 
         final LinearLayout linear = new LinearLayout(this);
         linear.setOrientation(LinearLayout.VERTICAL);
         linear.addView(userText);
         linear.addView(passwordText);
+        linear.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.blue_wallpaper));
+        linear.setLayoutParams(linearParams
+        );
 
         alert.setView(linear);
 

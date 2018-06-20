@@ -77,7 +77,7 @@ public class RankingActivity extends AppCompatActivity {
             }
         });
         dialog.show();
-        firebase.getPools(this);
+        firebase.getPools();
 
     }
 }

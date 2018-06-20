@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper_cup">
+    android:background="@drawable/wallpaper_login">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:nextFocusDown="@id/ti_password">
 
         <AutoCompleteTextView
             android:id="@+id/tv_user"
@@ -33,7 +34,8 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:nextFocusDown="@id/tv_password"/>
     </android.support.design.widget.TextInputLayout>
 
 
@@ -62,7 +64,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_user"
             android:layout_gravity="center"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:nextFocusDown="@id/btn_login"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
