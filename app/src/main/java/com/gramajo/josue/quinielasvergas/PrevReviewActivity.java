@@ -1,18 +1,24 @@
 package com.gramajo.josue.quinielasvergas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.gramajo.josue.quinielasvergas.Adapters.PrevReviewAdapter;
 import com.gramajo.josue.quinielasvergas.Helpers.FirebaseUtils;
+import com.gramajo.josue.quinielasvergas.Helpers.Global;
+import com.gramajo.josue.quinielasvergas.Helpers.OnFirestoreEventListener;
 import com.gramajo.josue.quinielasvergas.Helpers.OnRankingEventListener;
 import com.gramajo.josue.quinielasvergas.Helpers.OnUserEventListener;
+import com.gramajo.josue.quinielasvergas.Objects.Games;
 import com.gramajo.josue.quinielasvergas.Objects.Point;
 
 import java.util.ArrayList;
@@ -79,9 +85,26 @@ public class PrevReviewActivity extends AppCompatActivity {
         firebase.getPools();
     }
 
-    private void moveToReview(String user){
-        Intent intent = new Intent(this, ReviewActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+    private void moveToReview(final String user){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Elija una opcion");
+
+        alert.setPositiveButton("Fase de grupos", new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, int whichButton) {
+                Intent intent = new Intent(PrevReviewActivity.this, ReviewActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
+
+        alert.setNegativeButton("Fase final", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                Intent intent = new Intent(PrevReviewActivity.this, FinalsReviewActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
+
+        alert.show();
     }
 }

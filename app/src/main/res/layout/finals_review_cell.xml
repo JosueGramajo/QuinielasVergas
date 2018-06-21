@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="3">
+
+    <TableRow>
+        <TextView
+            android:text=""
+            android:padding="3dip" />
+        <TextView
+            android:gravity="center"
+            android:width="100dp"
+            android:text="Quiniela"
+            android:padding="3dip" />
+        <TextView
+            android:gravity="center"
+            android:width="100dp"
+            android:text="Final"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+
+        <ImageView
+            android:id="@+id/iv_rev_team1"
+            android:text="1"
+            android:gravity="right"
+            android:padding="3dip"
+            android:src="@drawable/undefined"/>
+
+        <TextView
+            android:id="@+id/tv_rev_first_pool_score"
+            android:text="3"
+            android:gravity="center"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/tv_rev_first_final_score"
+            android:text="3"
+            android:gravity="center"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <ImageView
+            android:id="@+id/iv_rev_team2"
+            android:text="1"
+            android:gravity="right"
+            android:padding="3dip"
+            android:src="@drawable/undefined"/>
+        <TextView
+            android:id="@+id/tv_rev_second_pool_score"
+            android:text="3"
+            android:gravity="center"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/tv_rev_second_final_score"
+            android:text="3"
+            android:gravity="center"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:gravity="center"
+            android:text="Penales"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/tv_rev_pool_penalties"
+            android:text="SI"
+            android:gravity="center"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/tv_rev_final_penalties"
+            android:text="NO"
+            android:gravity="center"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:width="115dp"
+            android:text="Ganador Penales"
+            android:padding="3dip"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tv_rev_pool_winner"
+            android:text="Brasil"
+            android:gravity="center"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/tv_rev_final_winner"
+            android:text="Argentina"
+            android:gravity="center"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+
+            android:text=""
+            android:gravity="center"
+            android:padding="3dip" />
+
+        <TextView
+            android:width="115dp"
+            android:text="Puntos:"
+            android:padding="3dip"
+            android:gravity="right"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_rev_points"
+            android:text="10"
+            android:gravity="center"
+            android:padding="3dip"
+            android:textStyle="bold"/>
+    </TableRow>
+</TableLayout>

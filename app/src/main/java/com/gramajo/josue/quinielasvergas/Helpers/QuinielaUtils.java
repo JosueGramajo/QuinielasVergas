@@ -158,4 +158,45 @@ public class QuinielaUtils {
 
         return 0;
     }
+
+    public int getPointsIndividualFinalsGame(FinalsGame master, FinalsGame user){
+        Integer masterFirstScore = master.getFirstTeamScore();
+        Integer masterSecondScore = master.getSecondTeamScore();
+        boolean masterPenalties = master.isPenalties();
+        String masterPenaltieWinner = master.getPenaltiesWinner();
+
+        Integer firstScore = user.getFirstTeamScore();
+        Integer secondScore = user.getSecondTeamScore();
+        boolean penalties = user.isPenalties();
+        String penaltieWinner = user.getPenaltiesWinner();
+
+        if(masterFirstScore == null || masterSecondScore == null || firstScore == null || secondScore == null){
+            return 0;
+        }
+
+        if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+            return 6;
+        }
+
+        if(penalties && masterPenalties){
+            return 2;
+        }
+
+        if(masterFirstScore == firstScore && masterSecondScore == secondScore){
+            return 5;
+        }
+
+        if(masterFirstScore > masterSecondScore && firstScore > secondScore){
+            return 1;
+        }
+
+        if(masterFirstScore < masterSecondScore && firstScore < secondScore){
+            return 1;
+        }
+
+        if(masterFirstScore == masterSecondScore && firstScore == secondScore){
+            return 1;
+        }
+        return 0;
+    }
 }

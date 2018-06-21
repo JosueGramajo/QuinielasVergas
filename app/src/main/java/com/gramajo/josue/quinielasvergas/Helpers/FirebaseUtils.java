@@ -57,6 +57,8 @@ public class FirebaseUtils {
 
     private OnFinalsGamesSavingEventListener mOnFinalsGamesSavingEventListener;
 
+    private OnFinalsReviewEventListener onFinalsReviewEventListener;
+
     public void setOnFirestoreEventListener(OnFirestoreEventListener mOnFirestoreEventListener) {
         this.mOnFirestoreEventListener = mOnFirestoreEventListener;
     }
@@ -84,6 +86,10 @@ public class FirebaseUtils {
 
     public void setOnFinalsGamesSavingEventListener(OnFinalsGamesSavingEventListener mOnFinalsGamesSavingEventListener) {
         this.mOnFinalsGamesSavingEventListener = mOnFinalsGamesSavingEventListener;
+    }
+
+    public  void setOnFinalsReviewEventListener(OnFinalsReviewEventListener listener){
+        this.onFinalsReviewEventListener = listener;
     }
 
     //REGISTER
@@ -382,6 +388,18 @@ public class FirebaseUtils {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(context, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getFinalsPoolForReview(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection(finalsID).document(finalsPoolID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                FinalsGames games = documentSnapshot.toObject(FinalsGames.class);
+                onFinalsReviewEventListener.onFinalsReviewSuccess(games);
             }
         });
     }

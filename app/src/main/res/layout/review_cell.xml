@@ -126,10 +126,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:text="5"
-            android:gravity="center"
-
-            />
-
+            android:gravity="center" />
     </LinearLayout>
 
 
