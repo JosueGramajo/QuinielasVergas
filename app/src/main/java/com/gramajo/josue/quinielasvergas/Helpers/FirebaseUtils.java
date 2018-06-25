@@ -59,6 +59,8 @@ public class FirebaseUtils {
 
     private OnFinalsReviewEventListener onFinalsReviewEventListener;
 
+    private OnCurrentGameEventListener onCurrentGameEventListener;
+
     public void setOnFirestoreEventListener(OnFirestoreEventListener mOnFirestoreEventListener) {
         this.mOnFirestoreEventListener = mOnFirestoreEventListener;
     }
@@ -90,6 +92,10 @@ public class FirebaseUtils {
 
     public  void setOnFinalsReviewEventListener(OnFinalsReviewEventListener listener){
         this.onFinalsReviewEventListener = listener;
+    }
+
+    public void setOnCurrentGameEventListener(OnCurrentGameEventListener onCurrentGameEventListener) {
+        this.onCurrentGameEventListener = onCurrentGameEventListener;
     }
 
     //REGISTER
@@ -403,5 +409,49 @@ public class FirebaseUtils {
             }
         });
     }
+
+    //CURRENT
+    public void getCurrentType(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection("MainScreen").document("mainScreenType");
+        ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                for (Map.Entry<String, Object> entry : documentSnapshot.getData().entrySet()) {
+                    if(entry.getKey().equals("type")){
+                        String value = entry.getValue().toString();
+                        if(value.equals("finals")){
+
+                        }else if(value.equals("groups")){
+                            getPoolsForCurrent();
+                        }
+                    }
+                }
+            }
+        });
+    }
+    public void getPoolsForCurrent(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference ref = db.collection(quinielaCollectionID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshot) {
+                List<Games> pools = documentSnapshot.toObjects(Games.class);
+                getMasterPoolForCurrent(pools);
+            }
+        });
+    }
+    public void getMasterPoolForCurrent(final List<Games> pools){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection(masterID).document(masterPoolID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Games games = documentSnapshot.toObject(Games.class);
+                onCurrentGameEventListener.onGroupsSuccess(pools, games);
+            }
+        });
+    }
+
 }
 

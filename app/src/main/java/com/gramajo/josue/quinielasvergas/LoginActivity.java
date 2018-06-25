@@ -61,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFirestoreLoginSuccess() {
                             dialog.dismiss();
+
+                            Intent intent = new Intent();
+                            setResult(1, intent);
                             finish();
                         }
                     });
