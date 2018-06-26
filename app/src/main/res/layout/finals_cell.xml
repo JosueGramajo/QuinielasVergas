@@ -17,7 +17,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/tv_finals_info"
@@ -33,36 +34,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:paddingLeft="15dp">
 
-        <ImageView
-            android:id="@+id/iv_finals_team1"
-            android:layout_width="106dp"
-            android:layout_height="46dp"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/undefined"/>
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_finals_team1"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/argentina_big" />
+
+            <TextView
+                android:id="@+id/tv_finals_team1_name"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:text="Argentina"/>
+        </LinearLayout>
+
 
         <EditText
             android:id="@+id/et_finals_score1"
             android:layout_width="50dp"
-            android:layout_height="46dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="number" />
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginLeft="3dp"/>
 
         <EditText
             android:id="@+id/et_finals_score2"
             android:layout_width="50dp"
-            android:layout_height="46dp"
-            android:ems="10"
-            android:inputType="number"/>
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp"/>
 
-        <ImageView
-            android:id="@+id/iv_finals_team2"
-            android:layout_width="106dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/undefined"/>
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_finals_team2"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/nigeria_big" />
+
+            <TextView
+                android:id="@+id/tv_finals_team2_name"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="2dp"
+                android:text="Nigeria"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

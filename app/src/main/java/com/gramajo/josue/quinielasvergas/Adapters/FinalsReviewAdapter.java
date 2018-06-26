@@ -26,7 +26,7 @@ public class FinalsReviewAdapter extends RecyclerView.Adapter<FinalsReviewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView team1, team2;
-        public TextView finalScore1, finalScore2, finalPenalties, finalWinner, poolScore1, poolScore2, poolPenalties, poolWinner, points;
+        public TextView finalScore1, finalScore2, finalPenalties, finalWinner, poolScore1, poolScore2, poolPenalties, poolWinner, points, name1, name2;
 
         public MyViewHolder(View view) {
             super(view);
@@ -41,6 +41,8 @@ public class FinalsReviewAdapter extends RecyclerView.Adapter<FinalsReviewAdapte
             poolPenalties = view.findViewById(R.id.tv_rev_pool_penalties);
             finalWinner = view.findViewById(R.id.tv_rev_final_winner);
             poolWinner = view.findViewById(R.id.tv_rev_pool_winner);
+            name1 = view.findViewById(R.id.iv_rev_team1_name);
+            name2 = view.findViewById(R.id.iv_rev_team2_name);
         }
     }
 
@@ -60,11 +62,14 @@ public class FinalsReviewAdapter extends RecyclerView.Adapter<FinalsReviewAdapte
     public void onBindViewHolder(FinalsReviewAdapter.MyViewHolder holder, final int position) {
         FinalsReview rev = list.get(position);
 
-        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getFirstTeam().getFlag(), null, null);
+        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getFirstTeam().getFlag() + "_big", null, null);
         holder.team1.setImageResource(id1);
 
-        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getSecondTeam().getFlag(), null, null);
+        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getSecondTeam().getFlag() + "_big", null, null);
         holder.team2.setImageResource(id2);
+
+        holder.name1.setText(rev.getGame().getFirstTeam().getName());
+        holder.name2.setText(rev.getGame().getSecondTeam().getName());
 
         holder.points.setText(String.valueOf(rev.getPoints()));
 

@@ -58,23 +58,48 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="left">
-            <ImageView
-                android:id="@+id/iv_review_firstTeam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/rusia"
-                android:layout_gravity="left"
-                android:foregroundGravity="left"
-                android:layout_weight="0.5"/>
 
-            <ImageView
-                android:id="@+id/iv_review_secondTeam"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/arabia"
-                android:layout_gravity="left"
-                android:foregroundGravity="left"
-                android:layout_weight="0.5"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_review_firstTeam"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/rusia_big"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_review_firstTeamName"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Rusia"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_review_secondTeam"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/arabia_big"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_review_secondTeamName"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Arabia"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

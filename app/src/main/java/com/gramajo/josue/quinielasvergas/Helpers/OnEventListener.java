@@ -6,4 +6,5 @@ package com.gramajo.josue.quinielasvergas.Helpers;
 
 public interface OnEventListener {
     void onFirestoreLoginSuccess();
+    void onFirestoreLoginFailure();
 }

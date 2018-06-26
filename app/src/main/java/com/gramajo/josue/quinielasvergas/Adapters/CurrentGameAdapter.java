@@ -35,7 +35,7 @@ private Context context;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
     public ImageView team1, team2;
-    public TextView score1, score2, teamName1, teamName2;
+    public TextView score1, score2, teamName1, teamName2, descripcion;
     public LinearLayout pool;
 
     public MyViewHolder(View view) {
@@ -47,6 +47,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         teamName1 = (TextView) view.findViewById(R.id.current_team1_name);
         teamName2 = (TextView) view.findViewById(R.id.current_team2_name);
         pool = (LinearLayout) view.findViewById(R.id.ll_players_pool);
+        descripcion = view.findViewById(R.id.descripcion);
     }
 }
 
@@ -65,24 +66,47 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     public void onBindViewHolder(CurrentGameAdapter.MyViewHolder holder, final int position) {
 
         if(list.get(position).getType().equals("finals")){
-            FinalsGame fGame = list.get(position).getFinalsGame();
+            FinalsGame game = list.get(position).getFinalsGame();
+
+            int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag() + "_big", null, null);
+            holder.team1.setImageResource(id1);
+
+            int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag() + "_big", null, null);
+            holder.team2.setImageResource(id2);
+
+            holder.teamName1.setText(game.getFirstTeam().getName());
+            holder.teamName2.setText(game.getSecondTeam().getName());
+
+            if(game.getFirstTeamScore() != null){
+                holder.score1.setText(String.valueOf(game.getFirstTeamScore()));
+            }
+            if(game.getSecondTeamScore() != null){
+                holder.score2.setText(String.valueOf(game.getSecondTeamScore()));
+            }
+
+            if(game.isPenalties()){
+                holder.descripcion.setText(game.getPenaltiesWinner() + " gano en penales");
+            }
+
+
+            for(String s : list.get(position).getUserResults()){
+                TextView textView = new TextView(context);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(15, 5, 15, 5);
+                textView.setText(Html.fromHtml(s));
+                textView.setLayoutParams(lp);
+                textView.setGravity(Gravity.CENTER);
+
+                holder.pool.addView(textView);
+            }
         }else if(list.get(position).getType().equals("groups")){
             Game game = list.get(position).getGroupGame();
 
-            try{
-                int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag() + "_big", null, null);
-                holder.team1.setImageResource(id1);
+            int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag() + "_big", null, null);
+            holder.team1.setImageResource(id1);
 
-                int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag() + "_big", null, null);
-                holder.team2.setImageResource(id2);
-            }catch (Exception ex){
-                int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag(), null, null);
-                holder.team1.setImageResource(id1);
-
-                int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag(), null, null);
-                holder.team2.setImageResource(id2);
-            }
-
+            int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag() + "_big", null, null);
+            holder.team2.setImageResource(id2);
 
             holder.teamName1.setText(game.getFirstTeam().getName());
             holder.teamName2.setText(game.getSecondTeam().getName());

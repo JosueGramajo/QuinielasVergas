@@ -130,7 +130,7 @@ public class FirebaseUtils {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (queryDocumentSnapshots.isEmpty()) {
-                    Toast.makeText(context, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
+                    mOnEventListener.onFirestoreLoginFailure();
                     return;
                 } else {
                     Toast.makeText(context, "Login exitoso :D", Toast.LENGTH_LONG).show();
@@ -143,7 +143,7 @@ public class FirebaseUtils {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(context, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
+                mOnEventListener.onFirestoreLoginFailure();
             }
         });
     }
@@ -421,7 +421,7 @@ public class FirebaseUtils {
                     if(entry.getKey().equals("type")){
                         String value = entry.getValue().toString();
                         if(value.equals("finals")){
-
+                            getFinalsPoolForCurrent();
                         }else if(value.equals("groups")){
                             getPoolsForCurrent();
                         }
@@ -449,6 +449,31 @@ public class FirebaseUtils {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Games games = documentSnapshot.toObject(Games.class);
                 onCurrentGameEventListener.onGroupsSuccess(pools, games);
+            }
+        });
+    }
+
+
+
+    public void getFinalsPoolForCurrent(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference ref = db.collection(quinielaFinalsCollectionID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshot) {
+                List<FinalsGames> finalsPools = documentSnapshot.toObjects(FinalsGames.class);
+                getFinalsForCurrent(finalsPools);
+            }
+        });
+    }
+    public void getFinalsForCurrent(final List<FinalsGames> finalsPools){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection(finalsID).document(finalsPoolID);
+        ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                FinalsGames finalsResults = documentSnapshot.toObject(FinalsGames.class);
+                onCurrentGameEventListener.onFinalsSuccess(finalsPools, finalsResults);
             }
         });
     }

@@ -35,7 +35,7 @@ public class FinalsAdapter extends RecyclerView.Adapter<FinalsAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView team1, team2;
         public EditText score1, score2;
-        public TextView info, header;
+        public TextView info, header, name1, name2;
         public View penaltiesView;
         public CheckBox penalties;
         public RadioButton team1P, team2P;
@@ -52,6 +52,8 @@ public class FinalsAdapter extends RecyclerView.Adapter<FinalsAdapter.MyViewHold
             penalties = view.findViewById(R.id.cb_finals_penalties);
             team1P = view.findViewById(R.id.rb_team1);
             team2P = view.findViewById(R.id.rb_team2);
+            name1 = view.findViewById(R.id.tv_finals_team1_name);
+            name2 = view.findViewById(R.id.tv_finals_team2_name);
         }
     }
 
@@ -84,11 +86,14 @@ public class FinalsAdapter extends RecyclerView.Adapter<FinalsAdapter.MyViewHold
             holder.penalties.setEnabled(false);
         }
 
-        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag(), null, null);
+        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag() + "_big", null, null);
         holder.team1.setImageResource(id1);
 
-        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag(), null, null);
+        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag() + "_big", null, null);
         holder.team2.setImageResource(id2);
+
+        holder.name1.setText(game.getFirstTeam().getName());
+        holder.name2.setText(game.getSecondTeam().getName());
 
         holder.info.setText(game.getDate() + " - " +game.getHour());
 

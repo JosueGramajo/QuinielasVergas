@@ -26,6 +26,7 @@ import com.gramajo.josue.quinielasvergas.Helpers.FirebaseUtils;
 import com.gramajo.josue.quinielasvergas.Helpers.Global;
 import com.gramajo.josue.quinielasvergas.Helpers.OnCurrentGameEventListener;
 import com.gramajo.josue.quinielasvergas.Objects.CurrentGame;
+import com.gramajo.josue.quinielasvergas.Objects.FinalsGame;
 import com.gramajo.josue.quinielasvergas.Objects.FinalsGames;
 import com.gramajo.josue.quinielasvergas.Objects.Game;
 import com.gramajo.josue.quinielasvergas.Objects.Games;
@@ -98,7 +99,12 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFinalsSuccess(List<FinalsGames> games, FinalsGames pool) {
+                dialog.dismiss();
+                try{
+                    makeFinalsGame(games, pool);
+                }catch (Exception ex){
 
+                }
             }
         });
         dialog.show();
@@ -131,8 +137,56 @@ public class MainActivity extends AppCompatActivity
                                         + userGame.getSecondTeam().getName());
                             }else{
                                 currentGame.addUserResult("<b>" + games2.getUser() + ":</b>  "
+                                        + userGame.getFirstTeam().getName()
+                                        + " X - X "
+                                        + userGame.getSecondTeam().getName());
+                            }
+
+                        }
+                    }
+                }
+
+                list.add(currentGame);
+            }
+        }
+
+        adapter.notifyDataSetChanged();
+    }
+
+    private void makeFinalsGame(List<FinalsGames> games, FinalsGames pool) throws Exception{
+        list.clear();
+
+        Date currentDate = DateUtils.INSTANCE.stringToDate(DateUtils.INSTANCE.getCurrentDate());
+
+        for(FinalsGame g : pool.getGames()){
+            Date gameDate = DateUtils.INSTANCE.stringToDate(g.getDate());
+
+            if(gameDate.equals(currentDate)){
+
+                CurrentGame currentGame = new CurrentGame();
+
+                currentGame.setFinalsGame(g);
+                currentGame.setType("finals");
+
+                for(FinalsGames games2 : games){
+                    for(FinalsGame userGame : games2.getGames()){
+                        if(userGame.getId() == g.getId()){
+                            if(userGame.getFirstTeamScore() != null && userGame.getSecondTeamScore() != null){
+                                String s = "<b>" + games2.getUser() + ":</b>  "
                                         + userGame.getFirstTeam().getName() + " "
-                                        + "X - X"
+                                        + userGame.getFirstTeamScore() + " - "
+                                        + userGame.getSecondTeamScore() + " "
+                                        + userGame.getSecondTeam().getName();
+
+                                if(userGame.isPenalties()){
+                                    s = s + " ("+ userGame.getPenaltiesWinner() +" gana en penales)";
+                                }
+
+                                currentGame.addUserResult(s);
+                            }else{
+                                currentGame.addUserResult("<b>" + games2.getUser() + ":</b>  "
+                                        + userGame.getFirstTeam().getName()
+                                        + " X - X "
                                         + userGame.getSecondTeam().getName());
                             }
 

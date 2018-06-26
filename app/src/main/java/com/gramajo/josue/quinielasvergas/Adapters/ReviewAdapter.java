@@ -27,7 +27,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView team1, team2;
-        public TextView finalScore1, finalScore2, poolScore1, poolScore2, date, points;
+        public TextView finalScore1, finalScore2, poolScore1, poolScore2, date, points, name1, name2;
 
         public MyViewHolder(View view) {
             super(view);
@@ -39,6 +39,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             poolScore2 = view.findViewById(R.id.tv_review_second_pool_score);
             date = view.findViewById(R.id.tv_review_date);
             points = view.findViewById(R.id.tv_review_points);
+            name1 = view.findViewById(R.id.tv_review_firstTeamName);
+            name2 = view.findViewById(R.id.tv_review_secondTeamName);
         }
     }
 
@@ -58,11 +60,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public void onBindViewHolder(ReviewAdapter.MyViewHolder holder, final int position) {
         Review rev = list.get(position);
 
-        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getFirstTeam().getFlag(), null, null);
+        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getFirstTeam().getFlag() + "_big", null, null);
         holder.team1.setImageResource(id1);
 
-        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getSecondTeam().getFlag(), null, null);
+        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + rev.getGame().getSecondTeam().getFlag() + "_big", null, null);
         holder.team2.setImageResource(id2);
+
+        holder.name1.setText(rev.getGame().getFirstTeam().getName());
+        holder.name2.setText(rev.getGame().getSecondTeam().getName());
 
         holder.date.setText(rev.getGame().getDate());
 

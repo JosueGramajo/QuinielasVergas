@@ -30,7 +30,7 @@ public class QuinielaAdapter extends RecyclerView.Adapter<QuinielaAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView team1, team2;
         public EditText score1, score2;
-        public TextView date;
+        public TextView teamName1, teamName2, date;
 
         public MyViewHolder(View view) {
             super(view);
@@ -38,6 +38,8 @@ public class QuinielaAdapter extends RecyclerView.Adapter<QuinielaAdapter.MyView
             team2 = (ImageView) view.findViewById(R.id.iv_team2);
             score1 = (EditText) view.findViewById(R.id.et_score1);
             score2 = (EditText) view.findViewById(R.id.et_score2);
+            teamName1 = (TextView) view.findViewById(R.id.tv_team1_name);
+            teamName2 = (TextView) view.findViewById(R.id.tv_team2_name);
             date = view.findViewById(R.id.tv_date);
         }
     }
@@ -58,11 +60,14 @@ public class QuinielaAdapter extends RecyclerView.Adapter<QuinielaAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         Game game = list.get(position);
 
-        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag(), null, null);
+        int id1 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getFirstTeam().getFlag() + "_big", null, null);
         holder.team1.setImageResource(id1);
 
-        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag(), null, null);
+        int id2 = context.getResources().getIdentifier("com.gramajo.josue.quinielasvergas:drawable/" + game.getSecondTeam().getFlag() + "_big", null, null);
         holder.team2.setImageResource(id2);
+
+        holder.teamName1.setText(game.getFirstTeam().getName());
+        holder.teamName2.setText(game.getSecondTeam().getName());
 
         holder.date.setText(game.getDate());
 

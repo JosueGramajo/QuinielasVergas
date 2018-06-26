@@ -66,6 +66,12 @@ public class LoginActivity extends AppCompatActivity {
                             setResult(1, intent);
                             finish();
                         }
+
+                        @Override
+                        public void onFirestoreLoginFailure() {
+                            dialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
+                        }
                     });
                     firebase.login(LoginActivity.this, userEditText.getText().toString(), passEditText.getText().toString());
                 }
