@@ -89,19 +89,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
                 holder.score2.setNumber(String.valueOf(game.getSecondTeamScore()));
             }
 
-            holder.score1.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-                @Override
-                public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                    list.get(position).getFinalsGame().setFirstTeamScore(Integer.parseInt(view.getNumber()));
-                }
-            });
-            holder.score2.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-                @Override
-                public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                    list.get(position).getFinalsGame().setSecondTeamScore(Integer.parseInt(view.getNumber()));
-                }
-            });
-
             holder.finals.setVisibility(View.VISIBLE);
 
             holder.penalties.setChecked(game.isPenalties());
@@ -141,6 +128,8 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
             holder.save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    list.get(position).getGroupGame().setSecondTeamScore(Integer.parseInt(holder.score2.getNumber()));
+                    list.get(position).getGroupGame().setFirstTeamScore(Integer.parseInt(holder.score1.getNumber()));
                     listener.onButtonPressed(list.get(position).getFinalsGame());
                 }
             });
@@ -157,24 +146,14 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
             if(game.getSecondTeamScore() != null){
                 holder.score2.setNumber(String.valueOf(game.getSecondTeamScore()));
             }
-            holder.score1.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-                @Override
-                public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                    list.get(position).getGroupGame().setFirstTeamScore(Integer.parseInt(view.getNumber()));
-                }
-            });
-            holder.score2.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-                @Override
-                public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                    list.get(position).getGroupGame().setSecondTeamScore(Integer.parseInt(view.getNumber()));
-                }
-            });
 
             holder.finals.setVisibility(View.GONE);
 
             holder.save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    list.get(position).getGroupGame().setSecondTeamScore(Integer.parseInt(holder.score2.getNumber()));
+                    list.get(position).getGroupGame().setFirstTeamScore(Integer.parseInt(holder.score1.getNumber()));
                     listener.onButtonPressed(list.get(position).getGroupGame());
                 }
             });
