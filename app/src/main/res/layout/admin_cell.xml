@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:id="@+id/admin_team1"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="Equipo"/>
+
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            android:id="@+id/admin_score1"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            app:backGroundColor="@color/colorAccent"
+            app:textSize="8sp"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:id="@+id/admin_team2"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="Equipo"/>
+
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            android:id="@+id/admin_score2"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            app:backGroundColor="@color/colorAccent"
+            app:textSize="8sp"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/finals_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <CheckBox
+            android:id="@+id/admin_penalties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="0.2"
+            android:text="Penales" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ganador en penales:" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/admin_rb_team1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="team1" />
+
+                <RadioButton
+                    android:id="@+id/admin_rb_team2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="team2" />
+            </RadioGroup>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/admin_save"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Guardar"
+        android:layout_marginTop="15dp"/>
+
+
+</LinearLayout>

@@ -4,6 +4,7 @@ package com.gramajo.josue.quinielasvergas.Helpers;
  * Created by josuegramajo on 6/15/18.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
@@ -123,7 +124,7 @@ public class FirebaseUtils {
     }
 
     //LOGIN
-    public void login(final Context context, final String user, final String pass){
+    public void login(final Context context, final String user, final String pass, final Activity activity){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference questionRef = db.collection(userCollectionID);
         questionRef.whereEqualTo("user", user).whereEqualTo("password", pass).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -135,6 +136,7 @@ public class FirebaseUtils {
                 } else {
                     Toast.makeText(context, "Login exitoso :D", Toast.LENGTH_LONG).show();
                     Global.globalUser = user;
+                    SharedPreferencesUtils.INSTANCE.writeUserAndPassword(activity, user, pass);
                     mOnEventListener.onFirestoreLoginSuccess();
                     return;
                 }
@@ -241,7 +243,7 @@ public class FirebaseUtils {
 
     public void saveMasterPool(final Context context, Games games){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(sampleID).document(quinielaSampleID).set(games).addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection(masterID).document(masterPoolID).set(games).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(context, "Datos guardados exitosmanete", Toast.LENGTH_SHORT).show();

@@ -51,6 +51,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     }
 }
 
+
+
     public CurrentGameAdapter(Context context, List<CurrentGame> list) {
         this.list = list;
         this.context = context;
@@ -89,16 +91,21 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
             }
 
 
-            for(String s : list.get(position).getUserResults()){
-                TextView textView = new TextView(context);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                lp.setMargins(15, 5, 15, 5);
-                textView.setText(Html.fromHtml(s));
-                textView.setLayoutParams(lp);
-                textView.setGravity(Gravity.CENTER);
+            holder.pool.removeAllViews();
 
-                holder.pool.addView(textView);
+            if(list.get(position).getUserResults() != null){
+                for(String s : list.get(position).getUserResults()){
+                    TextView textView = new TextView(context);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lp.setMargins(15, 5, 15, 5);
+                    textView.setText(Html.fromHtml(s));
+                    textView.setLayoutParams(lp);
+                    textView.setGravity(Gravity.CENTER);
+
+                    holder.pool.addView(textView);
+                }
             }
+
         }else if(list.get(position).getType().equals("groups")){
             Game game = list.get(position).getGroupGame();
 
@@ -118,17 +125,21 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
                 holder.score2.setText(String.valueOf(game.getSecondTeamScore()));
             }
 
+            holder.pool.removeAllViews();
 
-            for(String s : list.get(position).getUserResults()){
-                TextView textView = new TextView(context);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                lp.setMargins(15, 5, 15, 5);
-                textView.setText(Html.fromHtml(s));
-                textView.setLayoutParams(lp);
-                textView.setGravity(Gravity.CENTER);
+            if(list.get(position).getUserResults() != null){
+                for(String s : list.get(position).getUserResults()){
+                    TextView textView = new TextView(context);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lp.setMargins(15, 5, 15, 5);
+                    textView.setText(Html.fromHtml(s));
+                    textView.setLayoutParams(lp);
+                    textView.setGravity(Gravity.CENTER);
 
-                holder.pool.addView(textView);
+                    holder.pool.addView(textView);
+                }
             }
+
         }
 
 

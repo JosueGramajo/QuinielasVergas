@@ -3,6 +3,7 @@ package com.gramajo.josue.quinielasvergas;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity
 
     SpotsDialog dialog;
 
+    SwipeRefreshLayout swipe;
+
+    FirebaseUtils firebaseUtils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,15 @@ public class MainActivity extends AppCompatActivity
         dialog = (SpotsDialog) new SpotsDialog.Builder().setContext(this).build();
 
         recyclerView = findViewById(R.id.rv_current);
+
+        swipe = findViewById(R.id.swipe_container);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dialog.show();
+                firebaseUtils.getCurrentType();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,17 +93,12 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        FirebaseUtils firebaseUtils = new FirebaseUtils();
+        firebaseUtils = new FirebaseUtils();
         firebaseUtils.setOnCurrentGameEventListener(new OnCurrentGameEventListener() {
             @Override
             public void onGroupsSuccess(List<Games> games, Games pool) {
                 dialog.dismiss();
+                swipe.setRefreshing(false);
                 try{
                     makeGroupsGame(games, pool);
                 }catch (Exception ex){
@@ -100,6 +109,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFinalsSuccess(List<FinalsGames> games, FinalsGames pool) {
                 dialog.dismiss();
+                swipe.setRefreshing(false);
                 try{
                     makeFinalsGame(games, pool);
                 }catch (Exception ex){
@@ -107,6 +117,12 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         dialog.show();
         firebaseUtils.getCurrentType();
     }
@@ -253,6 +269,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, GlobalResultsActivity.class));
         } else if(id == R.id.nav_selections){
             startActivity(new Intent(this, PrevReviewActivity.class));
+        } else if(id == R.id.nav_admin){
+            if(Global.globalUser.equals("josue")){
+                startActivity(new Intent(this, AdminActivity.class));
+            }else{
+                Toast.makeText(this, "No tiene permisos administrativos", Toast.LENGTH_SHORT).show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
