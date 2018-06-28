@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ArrayList<String> values = SharedPreferencesUtils.INSTANCE.readUserAndPassword(this);
         if(!values.get(0).equals("") && !values.get(1).equals("")){
+            dialog.show();
             firebase.login(LoginActivity.this, values.get(0), values.get(1), this);
         }
     }

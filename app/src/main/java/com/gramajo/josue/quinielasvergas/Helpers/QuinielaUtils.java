@@ -91,13 +91,13 @@ public class QuinielaUtils {
                 continue;
             }
 
-            if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+            if(penaltieWinner.equals(masterPenaltieWinner) && penalties && (masterFirstScore == firstScore && masterSecondScore == secondScore)){
                 uPoints = uPoints + 6;
                 continue;
             }
 
-            if(penalties && masterPenalties){
-                uPoints = uPoints + 2;
+            if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+                uPoints = uPoints + 3;
                 continue;
             }
 
@@ -174,12 +174,12 @@ public class QuinielaUtils {
             return 0;
         }
 
-        if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+        if(penaltieWinner.equals(masterPenaltieWinner) && penalties && (masterFirstScore == firstScore && masterSecondScore == secondScore)){
             return 6;
         }
 
-        if(penalties && masterPenalties){
-            return 2;
+        if(penaltieWinner.equals(masterPenaltieWinner) && penalties){
+            return 3;
         }
 
         if(masterFirstScore == firstScore && masterSecondScore == secondScore){
