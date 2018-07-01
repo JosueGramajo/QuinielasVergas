@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gramajo.josue.quinielasvergas.Helpers.FirebaseUtils;
+import com.gramajo.josue.quinielasvergas.Helpers.Global;
 import com.gramajo.josue.quinielasvergas.Helpers.OnEventListener;
 import com.gramajo.josue.quinielasvergas.Helpers.SharedPreferencesUtils;
 
@@ -62,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onFirestoreLoginSuccess() {
                 dialog.dismiss();
 
+                Global.logout = false;
+
                 Intent intent = new Intent();
                 setResult(1, intent);
                 finish();
@@ -99,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
 
         ArrayList<String> values = SharedPreferencesUtils.INSTANCE.readUserAndPassword(this);
-        if(!values.get(0).equals("") && !values.get(1).equals("")){
+        if(!values.get(0).equals("") && !values.get(1).equals("") && !Global.logout){
             dialog.show();
             firebase.login(LoginActivity.this, values.get(0), values.get(1), this);
         }

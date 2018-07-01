@@ -128,8 +128,8 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
             holder.save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    list.get(position).getGroupGame().setSecondTeamScore(Integer.parseInt(holder.score2.getNumber()));
-                    list.get(position).getGroupGame().setFirstTeamScore(Integer.parseInt(holder.score1.getNumber()));
+                    list.get(position).getFinalsGame().setSecondTeamScore(Integer.parseInt(holder.score2.getNumber()));
+                    list.get(position).getFinalsGame().setFirstTeamScore(Integer.parseInt(holder.score1.getNumber()));
                     listener.onButtonPressed(list.get(position).getFinalsGame());
                 }
             });

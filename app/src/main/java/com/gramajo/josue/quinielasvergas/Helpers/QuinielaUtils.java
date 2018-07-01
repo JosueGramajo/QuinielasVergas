@@ -77,6 +77,7 @@ public class QuinielaUtils {
             Integer secondScore = null;
             boolean penalties = false;
             String penaltieWinner = "";
+            String playerWinner = "";
 
             for(FinalsGame g : user){
                 if(g.getId() == m.getId()){
@@ -84,14 +85,24 @@ public class QuinielaUtils {
                     secondScore = g.getSecondTeamScore();
                     penalties = g.isPenalties();
                     penaltieWinner = g.getPenaltiesWinner();
+
+                    if(g.getFirstTeamScore() != null && g.getSecondTeamScore() != null){
+                        if(g.getFirstTeamScore() > g.getSecondTeamScore()){
+                            playerWinner = g.getFirstTeam().getName();
+                        }else if(g.getFirstTeamScore() < g.getSecondTeamScore()){
+                            playerWinner = g.getSecondTeam().getName();
+                        }
+                    }
+
                 }
             }
+
 
             if(masterFirstScore == null || masterSecondScore == null || firstScore == null || secondScore == null){
                 continue;
             }
 
-            if(penaltieWinner.equals(masterPenaltieWinner) && penalties && (masterFirstScore == firstScore && masterSecondScore == secondScore)){
+            if(penaltieWinner.equals(masterPenaltieWinner) && penalties && masterPenalties && (masterFirstScore == firstScore && masterSecondScore == secondScore)){
                 uPoints = uPoints + 6;
                 continue;
             }
@@ -104,6 +115,13 @@ public class QuinielaUtils {
             if(masterFirstScore == firstScore && masterSecondScore == secondScore){
                 uPoints = uPoints + 5;
                 continue;
+            }
+
+            if(playerWinner != ""){
+                if(playerWinner.equals(masterPenaltieWinner)){
+                    uPoints = uPoints + 1;
+                    continue;
+                }
             }
 
             if(masterFirstScore > masterSecondScore && firstScore > secondScore){
@@ -170,6 +188,17 @@ public class QuinielaUtils {
         boolean penalties = user.isPenalties();
         String penaltieWinner = user.getPenaltiesWinner();
 
+        String playerWinner = "";
+
+        if(firstScore != null && secondScore != null){
+            if(firstScore > secondScore){
+                playerWinner = user.getFirstTeam().getName();
+            }else if(secondScore > firstScore){
+                playerWinner = user.getSecondTeam().getName();
+            }
+        }
+
+
         if(masterFirstScore == null || masterSecondScore == null || firstScore == null || secondScore == null){
             return 0;
         }
@@ -184,6 +213,12 @@ public class QuinielaUtils {
 
         if(masterFirstScore == firstScore && masterSecondScore == secondScore){
             return 5;
+        }
+
+        if(playerWinner != ""){
+            if(playerWinner.equals(masterPenaltieWinner)){
+                return 1;
+            }
         }
 
         if(masterFirstScore > masterSecondScore && firstScore > secondScore){

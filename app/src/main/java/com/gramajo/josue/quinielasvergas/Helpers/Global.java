@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Global {
     public static String globalUser = null;
 
+    public static boolean logout = false;
+
     //Teams
     public static Country alemania = new Country("Alemania", "alemania");
     public static Country arabia = new Country("Arabia", "arabia");

@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, RankingActivity.class));
         } else if (id == R.id.nav_logout){
             Global.globalUser = null;
+            Global.logout = true;
             startActivity(new Intent(this, LoginActivity.class));
         } else if(id == R.id.nav_results){
             startActivity(new Intent(this, GlobalResultsActivity.class));
